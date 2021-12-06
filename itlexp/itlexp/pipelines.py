@@ -10,14 +10,14 @@ import mysql.connector
 class ItlexpPipeline(object):
 
     def __init__(self):
-        self.curr,self.conn = self.create_connection()
-        self.curr = self.create_table(self.curr)
+        self.create_connection()
+        self.create_table()
 
     def create_connection(self):
         self.conn = mysql.connector.connect(
             host = 'localhost',
             user = 'root',
-            passwd = 'password',
+            passwd = 'Ganesh@6jan',
             database = "medals"
         )
         self.curr = self.conn.cursor()
@@ -37,10 +37,10 @@ class ItlexpPipeline(object):
 
     def store_db(self, item):
         self.curr.execute("""INSERT INTO medals VALUES (%s,%s,%s,%s,%s)""", (
-            item['Country'][0],
-            item['Gold'][0],
-            item['Silver'][0],
-            item['Bronze'][0],
-            item['Total'][0],
+            item['Country'],
+            item['Gold'],
+            item['Silver'],
+            item['Bronze'],
+            item['Total'],
         ))
         self.conn.commit()
